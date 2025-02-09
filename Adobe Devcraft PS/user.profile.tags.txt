@@ -41,4 +41,4 @@
 16706	Long-term interest/culture
 16751	Long-term interest/sex
 10110	Demographic/gender/male
-10111	Demographic/gender/famale
+10111	Demographic/gender/female
