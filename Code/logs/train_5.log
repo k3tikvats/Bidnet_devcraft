@@ -1,0 +1,91 @@
+2025-02-10 02:30:26 - INFO - ------------------------------------------------------------------------------------------------
+2025-02-10 02:30:26 - INFO - starting new training !!!!
+2025-02-10 02:30:26 - INFO - ------------------------------------------------------------------------------------------------
+2025-02-10 02:30:26 - INFO - Namespace(lr=0.0001, batch=32, epoch=50, data_dir='', save_dir='model_parameter', weight_fac=1, save_freq=2, log_dir='logs', gamma=0.1, step_size=2, model_path=None, log_interval=100, embed_dim=768)
+2025-02-10 02:30:26 - INFO - parameters are being saved at :model_parameter/5
+2025-02-10 02:30:26 - INFO - BidPredictor(
+  (Region_compressor): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=768, out_features=192, bias=True)
+      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (1): Sequential(
+      (0): Linear(in_features=192, out_features=48, bias=True)
+      (1): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (2): Sequential(
+      (0): Linear(in_features=48, out_features=12, bias=True)
+      (1): BatchNorm1d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (3): Sequential(
+      (0): Linear(in_features=12, out_features=3, bias=True)
+      (1): BatchNorm1d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+  )
+  (City_compressor): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=768, out_features=192, bias=True)
+      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (1): Sequential(
+      (0): Linear(in_features=192, out_features=48, bias=True)
+      (1): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (2): Sequential(
+      (0): Linear(in_features=48, out_features=12, bias=True)
+      (1): BatchNorm1d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (3): Sequential(
+      (0): Linear(in_features=12, out_features=3, bias=True)
+      (1): BatchNorm1d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+  )
+  (alignment): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=44, out_features=8, bias=True)
+      (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (1): Sequential(
+      (0): Linear(in_features=8, out_features=4, bias=True)
+      (1): BatchNorm1d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+  )
+  (backbone): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=18, out_features=64, bias=True)
+      (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (1): Sequential(
+      (0): Linear(in_features=64, out_features=64, bias=True)
+      (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (2): Sequential(
+      (0): Linear(in_features=64, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (3): Sequential(
+      (0): Linear(in_features=128, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (4): Sequential(
+      (0): Linear(in_features=256, out_features=512, bias=True)
+      (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+  )
+  (classifier): Linear(in_features=512, out_features=2, bias=True)
+)

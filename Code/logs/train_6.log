@@ -1,0 +1,317 @@
+2025-02-10 02:31:09 - INFO - ------------------------------------------------------------------------------------------------
+2025-02-10 02:31:09 - INFO - starting new training !!!!
+2025-02-10 02:31:09 - INFO - ------------------------------------------------------------------------------------------------
+2025-02-10 02:31:09 - INFO - Namespace(lr=0.0001, batch=32, epoch=50, data_dir='', save_dir='model_parameter', weight_fac=1, save_freq=2, log_dir='logs', gamma=0.1, step_size=2, model_path=None, log_interval=100, embed_dim=768)
+2025-02-10 02:31:09 - INFO - parameters are being saved at :model_parameter/6
+2025-02-10 02:31:09 - INFO - BidPredictor(
+  (Region_compressor): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=768, out_features=192, bias=True)
+      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (1): Sequential(
+      (0): Linear(in_features=192, out_features=48, bias=True)
+      (1): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (2): Sequential(
+      (0): Linear(in_features=48, out_features=12, bias=True)
+      (1): BatchNorm1d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (3): Sequential(
+      (0): Linear(in_features=12, out_features=3, bias=True)
+      (1): BatchNorm1d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+  )
+  (City_compressor): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=768, out_features=192, bias=True)
+      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (1): Sequential(
+      (0): Linear(in_features=192, out_features=48, bias=True)
+      (1): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (2): Sequential(
+      (0): Linear(in_features=48, out_features=12, bias=True)
+      (1): BatchNorm1d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (3): Sequential(
+      (0): Linear(in_features=12, out_features=3, bias=True)
+      (1): BatchNorm1d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+  )
+  (alignment): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=44, out_features=8, bias=True)
+      (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (1): Sequential(
+      (0): Linear(in_features=8, out_features=4, bias=True)
+      (1): BatchNorm1d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+  )
+  (backbone): Sequential(
+    (0): Sequential(
+      (0): Linear(in_features=18, out_features=64, bias=True)
+      (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (1): Sequential(
+      (0): Linear(in_features=64, out_features=64, bias=True)
+      (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (2): Sequential(
+      (0): Linear(in_features=64, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (3): Sequential(
+      (0): Linear(in_features=128, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+    (4): Sequential(
+      (0): Linear(in_features=256, out_features=512, bias=True)
+      (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): SiLU()
+    )
+  )
+  (classifier): Linear(in_features=512, out_features=2, bias=True)
+)
+2025-02-10 02:35:17 - INFO - epoch:0/50 iteration:0/4 batch loss is :173.7413
+2025-02-10 02:35:18 - INFO - Epoch:0/50 Loss is :141.1221
+2025-02-10 02:35:18 - INFO - average cls loss is :0.7112
+2025-02-10 02:35:18 - INFO - average q divergence is : 140.4109
+2025-02-10 02:35:18 - INFO - VAL loss :150.2673
+2025-02-10 02:35:18 - INFO - epoch:1/50 iteration:0/4 batch loss is :205.3771
+2025-02-10 02:35:18 - INFO - Epoch:1/50 Loss is :140.9078
+2025-02-10 02:35:18 - INFO - average cls loss is :0.6790
+2025-02-10 02:35:18 - INFO - average q divergence is : 140.2288
+2025-02-10 02:35:18 - INFO - epoch:2/50 iteration:0/4 batch loss is :180.3291
+2025-02-10 02:35:18 - INFO - Epoch:2/50 Loss is :140.7675
+2025-02-10 02:35:18 - INFO - average cls loss is :0.6619
+2025-02-10 02:35:18 - INFO - average q divergence is : 140.1056
+2025-02-10 02:35:18 - INFO - VAL loss :150.0671
+2025-02-10 02:35:19 - INFO - epoch:3/50 iteration:0/4 batch loss is :204.0431
+2025-02-10 02:35:19 - INFO - Epoch:3/50 Loss is :140.7555
+2025-02-10 02:35:19 - INFO - average cls loss is :0.6632
+2025-02-10 02:35:19 - INFO - average q divergence is : 140.0923
+2025-02-10 02:35:19 - INFO - epoch:4/50 iteration:0/4 batch loss is :166.4159
+2025-02-10 02:35:19 - INFO - Epoch:4/50 Loss is :140.7231
+2025-02-10 02:35:19 - INFO - average cls loss is :0.6601
+2025-02-10 02:35:19 - INFO - average q divergence is : 140.0630
+2025-02-10 02:35:19 - INFO - VAL loss :150.0631
+2025-02-10 02:35:19 - INFO - epoch:5/50 iteration:0/4 batch loss is :168.3059
+2025-02-10 02:35:20 - INFO - Epoch:5/50 Loss is :140.7470
+2025-02-10 02:35:20 - INFO - average cls loss is :0.6586
+2025-02-10 02:35:20 - INFO - average q divergence is : 140.0884
+2025-02-10 02:35:20 - INFO - epoch:6/50 iteration:0/4 batch loss is :146.3311
+2025-02-10 02:35:20 - INFO - Epoch:6/50 Loss is :140.7535
+2025-02-10 02:35:20 - INFO - average cls loss is :0.6593
+2025-02-10 02:35:20 - INFO - average q divergence is : 140.0942
+2025-02-10 02:35:20 - INFO - VAL loss :150.0512
+2025-02-10 02:35:20 - INFO - epoch:7/50 iteration:0/4 batch loss is :195.0964
+2025-02-10 02:35:20 - INFO - Epoch:7/50 Loss is :140.7258
+2025-02-10 02:35:20 - INFO - average cls loss is :0.6578
+2025-02-10 02:35:20 - INFO - average q divergence is : 140.0680
+2025-02-10 02:35:20 - INFO - epoch:8/50 iteration:0/4 batch loss is :172.8614
+2025-02-10 02:35:21 - INFO - Epoch:8/50 Loss is :140.7429
+2025-02-10 02:35:21 - INFO - average cls loss is :0.6591
+2025-02-10 02:35:21 - INFO - average q divergence is : 140.0838
+2025-02-10 02:35:21 - INFO - VAL loss :150.0506
+2025-02-10 02:35:21 - INFO - epoch:9/50 iteration:0/4 batch loss is :179.7323
+2025-02-10 02:35:21 - INFO - Epoch:9/50 Loss is :140.7360
+2025-02-10 02:35:21 - INFO - average cls loss is :0.6618
+2025-02-10 02:35:21 - INFO - average q divergence is : 140.0742
+2025-02-10 02:35:21 - INFO - epoch:10/50 iteration:0/4 batch loss is :191.9663
+2025-02-10 02:35:21 - INFO - Epoch:10/50 Loss is :140.7506
+2025-02-10 02:35:21 - INFO - average cls loss is :0.6634
+2025-02-10 02:35:21 - INFO - average q divergence is : 140.0872
+2025-02-10 02:35:22 - INFO - VAL loss :150.0529
+2025-02-10 02:35:22 - INFO - epoch:11/50 iteration:0/4 batch loss is :161.5086
+2025-02-10 02:35:22 - INFO - Epoch:11/50 Loss is :140.7444
+2025-02-10 02:35:22 - INFO - average cls loss is :0.6605
+2025-02-10 02:35:22 - INFO - average q divergence is : 140.0839
+2025-02-10 02:35:22 - INFO - epoch:12/50 iteration:0/4 batch loss is :177.1572
+2025-02-10 02:35:23 - INFO - Epoch:12/50 Loss is :140.7307
+2025-02-10 02:35:23 - INFO - average cls loss is :0.6588
+2025-02-10 02:35:23 - INFO - average q divergence is : 140.0719
+2025-02-10 02:35:23 - INFO - VAL loss :150.0725
+2025-02-10 02:35:23 - INFO - epoch:13/50 iteration:0/4 batch loss is :140.4146
+2025-02-10 02:35:23 - INFO - Epoch:13/50 Loss is :140.7437
+2025-02-10 02:35:23 - INFO - average cls loss is :0.6596
+2025-02-10 02:35:23 - INFO - average q divergence is : 140.0841
+2025-02-10 02:35:23 - INFO - epoch:14/50 iteration:0/4 batch loss is :184.4519
+2025-02-10 02:35:23 - INFO - Epoch:14/50 Loss is :140.7429
+2025-02-10 02:35:23 - INFO - average cls loss is :0.6614
+2025-02-10 02:35:23 - INFO - average q divergence is : 140.0815
+2025-02-10 02:35:23 - INFO - VAL loss :150.0710
+2025-02-10 02:35:24 - INFO - epoch:15/50 iteration:0/4 batch loss is :203.0053
+2025-02-10 02:35:24 - INFO - Epoch:15/50 Loss is :140.7447
+2025-02-10 02:35:24 - INFO - average cls loss is :0.6591
+2025-02-10 02:35:24 - INFO - average q divergence is : 140.0856
+2025-02-10 02:35:24 - INFO - epoch:16/50 iteration:0/4 batch loss is :172.2087
+2025-02-10 02:35:24 - INFO - Epoch:16/50 Loss is :140.7592
+2025-02-10 02:35:24 - INFO - average cls loss is :0.6628
+2025-02-10 02:35:24 - INFO - average q divergence is : 140.0964
+2025-02-10 02:35:24 - INFO - VAL loss :150.0440
+2025-02-10 02:35:24 - INFO - epoch:17/50 iteration:0/4 batch loss is :193.4042
+2025-02-10 02:35:25 - INFO - Epoch:17/50 Loss is :140.7456
+2025-02-10 02:35:25 - INFO - average cls loss is :0.6599
+2025-02-10 02:35:25 - INFO - average q divergence is : 140.0857
+2025-02-10 02:35:25 - INFO - epoch:18/50 iteration:0/4 batch loss is :120.8751
+2025-02-10 02:35:25 - INFO - Epoch:18/50 Loss is :140.7384
+2025-02-10 02:35:25 - INFO - average cls loss is :0.6614
+2025-02-10 02:35:25 - INFO - average q divergence is : 140.0771
+2025-02-10 02:35:25 - INFO - VAL loss :150.0546
+2025-02-10 02:35:25 - INFO - epoch:19/50 iteration:0/4 batch loss is :205.8138
+2025-02-10 02:35:25 - INFO - Epoch:19/50 Loss is :140.7758
+2025-02-10 02:35:25 - INFO - average cls loss is :0.6599
+2025-02-10 02:35:25 - INFO - average q divergence is : 140.1159
+2025-02-10 02:35:25 - INFO - epoch:20/50 iteration:0/4 batch loss is :187.2009
+2025-02-10 02:35:26 - INFO - Epoch:20/50 Loss is :140.7469
+2025-02-10 02:35:26 - INFO - average cls loss is :0.6601
+2025-02-10 02:35:26 - INFO - average q divergence is : 140.0868
+2025-02-10 02:35:26 - INFO - VAL loss :150.0423
+2025-02-10 02:35:26 - INFO - epoch:21/50 iteration:0/4 batch loss is :196.3699
+2025-02-10 02:35:26 - INFO - Epoch:21/50 Loss is :140.7504
+2025-02-10 02:35:26 - INFO - average cls loss is :0.6602
+2025-02-10 02:35:26 - INFO - average q divergence is : 140.0902
+2025-02-10 02:35:26 - INFO - epoch:22/50 iteration:0/4 batch loss is :166.3608
+2025-02-10 02:35:27 - INFO - Epoch:22/50 Loss is :140.7751
+2025-02-10 02:35:27 - INFO - average cls loss is :0.6611
+2025-02-10 02:35:27 - INFO - average q divergence is : 140.1140
+2025-02-10 02:35:27 - INFO - VAL loss :150.0508
+2025-02-10 02:35:27 - INFO - epoch:23/50 iteration:0/4 batch loss is :167.1890
+2025-02-10 02:35:27 - INFO - Epoch:23/50 Loss is :140.7587
+2025-02-10 02:35:27 - INFO - average cls loss is :0.6595
+2025-02-10 02:35:27 - INFO - average q divergence is : 140.0992
+2025-02-10 02:35:27 - INFO - epoch:24/50 iteration:0/4 batch loss is :170.9342
+2025-02-10 02:35:27 - INFO - Epoch:24/50 Loss is :140.7512
+2025-02-10 02:35:27 - INFO - average cls loss is :0.6608
+2025-02-10 02:35:27 - INFO - average q divergence is : 140.0904
+2025-02-10 02:35:28 - INFO - VAL loss :150.0781
+2025-02-10 02:35:28 - INFO - epoch:25/50 iteration:0/4 batch loss is :151.9795
+2025-02-10 02:35:28 - INFO - Epoch:25/50 Loss is :140.7295
+2025-02-10 02:35:28 - INFO - average cls loss is :0.6577
+2025-02-10 02:35:28 - INFO - average q divergence is : 140.0718
+2025-02-10 02:35:28 - INFO - epoch:26/50 iteration:0/4 batch loss is :192.4510
+2025-02-10 02:35:28 - INFO - Epoch:26/50 Loss is :140.7308
+2025-02-10 02:35:28 - INFO - average cls loss is :0.6593
+2025-02-10 02:35:28 - INFO - average q divergence is : 140.0715
+2025-02-10 02:35:28 - INFO - VAL loss :150.0880
+2025-02-10 02:35:28 - INFO - epoch:27/50 iteration:0/4 batch loss is :183.0151
+2025-02-10 02:35:29 - INFO - Epoch:27/50 Loss is :140.7392
+2025-02-10 02:35:29 - INFO - average cls loss is :0.6597
+2025-02-10 02:35:29 - INFO - average q divergence is : 140.0795
+2025-02-10 02:35:29 - INFO - epoch:28/50 iteration:0/4 batch loss is :205.4589
+2025-02-10 02:35:29 - INFO - Epoch:28/50 Loss is :140.7317
+2025-02-10 02:35:29 - INFO - average cls loss is :0.6587
+2025-02-10 02:35:29 - INFO - average q divergence is : 140.0730
+2025-02-10 02:35:29 - INFO - VAL loss :150.0701
+2025-02-10 02:35:29 - INFO - epoch:29/50 iteration:0/4 batch loss is :199.3407
+2025-02-10 02:35:30 - INFO - Epoch:29/50 Loss is :140.7393
+2025-02-10 02:35:30 - INFO - average cls loss is :0.6615
+2025-02-10 02:35:30 - INFO - average q divergence is : 140.0778
+2025-02-10 02:35:30 - INFO - epoch:30/50 iteration:0/4 batch loss is :161.7347
+2025-02-10 02:35:30 - INFO - Epoch:30/50 Loss is :140.7374
+2025-02-10 02:35:30 - INFO - average cls loss is :0.6592
+2025-02-10 02:35:30 - INFO - average q divergence is : 140.0782
+2025-02-10 02:35:30 - INFO - VAL loss :150.0518
+2025-02-10 02:35:30 - INFO - epoch:31/50 iteration:0/4 batch loss is :176.4774
+2025-02-10 02:35:30 - INFO - Epoch:31/50 Loss is :140.7981
+2025-02-10 02:35:30 - INFO - average cls loss is :0.6621
+2025-02-10 02:35:30 - INFO - average q divergence is : 140.1360
+2025-02-10 02:35:30 - INFO - epoch:32/50 iteration:0/4 batch loss is :183.7690
+2025-02-10 02:35:31 - INFO - Epoch:32/50 Loss is :140.7471
+2025-02-10 02:35:31 - INFO - average cls loss is :0.6598
+2025-02-10 02:35:31 - INFO - average q divergence is : 140.0873
+2025-02-10 02:35:31 - INFO - VAL loss :150.0418
+2025-02-10 02:35:31 - INFO - epoch:33/50 iteration:0/4 batch loss is :192.6633
+2025-02-10 02:35:31 - INFO - Epoch:33/50 Loss is :140.7763
+2025-02-10 02:35:31 - INFO - average cls loss is :0.6626
+2025-02-10 02:35:31 - INFO - average q divergence is : 140.1137
+2025-02-10 02:35:31 - INFO - epoch:34/50 iteration:0/4 batch loss is :178.8419
+2025-02-10 02:35:32 - INFO - Epoch:34/50 Loss is :140.7357
+2025-02-10 02:35:32 - INFO - average cls loss is :0.6590
+2025-02-10 02:35:32 - INFO - average q divergence is : 140.0767
+2025-02-10 02:35:32 - INFO - VAL loss :150.0689
+2025-02-10 02:35:32 - INFO - epoch:35/50 iteration:0/4 batch loss is :226.9052
+2025-02-10 02:35:32 - INFO - Epoch:35/50 Loss is :140.7186
+2025-02-10 02:35:32 - INFO - average cls loss is :0.6611
+2025-02-10 02:35:32 - INFO - average q divergence is : 140.0576
+2025-02-10 02:35:32 - INFO - epoch:36/50 iteration:0/4 batch loss is :209.2206
+2025-02-10 02:35:32 - INFO - Epoch:36/50 Loss is :140.7519
+2025-02-10 02:35:32 - INFO - average cls loss is :0.6609
+2025-02-10 02:35:32 - INFO - average q divergence is : 140.0910
+2025-02-10 02:35:33 - INFO - VAL loss :150.0673
+2025-02-10 02:35:33 - INFO - epoch:37/50 iteration:0/4 batch loss is :137.7111
+2025-02-10 02:35:33 - INFO - Epoch:37/50 Loss is :140.7422
+2025-02-10 02:35:33 - INFO - average cls loss is :0.6606
+2025-02-10 02:35:33 - INFO - average q divergence is : 140.0816
+2025-02-10 02:35:33 - INFO - epoch:38/50 iteration:0/4 batch loss is :207.9889
+2025-02-10 02:35:33 - INFO - Epoch:38/50 Loss is :140.7518
+2025-02-10 02:35:33 - INFO - average cls loss is :0.6606
+2025-02-10 02:35:33 - INFO - average q divergence is : 140.0913
+2025-02-10 02:35:33 - INFO - VAL loss :150.0484
+2025-02-10 02:35:33 - INFO - epoch:39/50 iteration:0/4 batch loss is :185.2578
+2025-02-10 02:35:34 - INFO - Epoch:39/50 Loss is :140.7446
+2025-02-10 02:35:34 - INFO - average cls loss is :0.6592
+2025-02-10 02:35:34 - INFO - average q divergence is : 140.0854
+2025-02-10 02:35:34 - INFO - epoch:40/50 iteration:0/4 batch loss is :195.0844
+2025-02-10 02:35:34 - INFO - Epoch:40/50 Loss is :140.7342
+2025-02-10 02:35:34 - INFO - average cls loss is :0.6595
+2025-02-10 02:35:34 - INFO - average q divergence is : 140.0747
+2025-02-10 02:35:34 - INFO - VAL loss :150.0501
+2025-02-10 02:35:34 - INFO - epoch:41/50 iteration:0/4 batch loss is :199.6389
+2025-02-10 02:35:35 - INFO - Epoch:41/50 Loss is :140.7350
+2025-02-10 02:35:35 - INFO - average cls loss is :0.6593
+2025-02-10 02:35:35 - INFO - average q divergence is : 140.0757
+2025-02-10 02:35:35 - INFO - epoch:42/50 iteration:0/4 batch loss is :210.6830
+2025-02-10 02:35:35 - INFO - Epoch:42/50 Loss is :140.7615
+2025-02-10 02:35:35 - INFO - average cls loss is :0.6605
+2025-02-10 02:35:35 - INFO - average q divergence is : 140.1010
+2025-02-10 02:35:35 - INFO - VAL loss :150.0702
+2025-02-10 02:35:35 - INFO - epoch:43/50 iteration:0/4 batch loss is :147.6061
+2025-02-10 02:35:35 - INFO - Epoch:43/50 Loss is :140.7443
+2025-02-10 02:35:35 - INFO - average cls loss is :0.6605
+2025-02-10 02:35:35 - INFO - average q divergence is : 140.0838
+2025-02-10 02:35:35 - INFO - epoch:44/50 iteration:0/4 batch loss is :178.7961
+2025-02-10 02:35:36 - INFO - Epoch:44/50 Loss is :140.7433
+2025-02-10 02:35:36 - INFO - average cls loss is :0.6605
+2025-02-10 02:35:36 - INFO - average q divergence is : 140.0828
+2025-02-10 02:35:36 - INFO - VAL loss :150.0644
+2025-02-10 02:35:36 - INFO - epoch:45/50 iteration:0/4 batch loss is :210.5107
+2025-02-10 02:35:36 - INFO - Epoch:45/50 Loss is :140.7391
+2025-02-10 02:35:36 - INFO - average cls loss is :0.6610
+2025-02-10 02:35:36 - INFO - average q divergence is : 140.0781
+2025-02-10 02:35:36 - INFO - epoch:46/50 iteration:0/4 batch loss is :183.8595
+2025-02-10 02:35:37 - INFO - Epoch:46/50 Loss is :140.7408
+2025-02-10 02:35:37 - INFO - average cls loss is :0.6610
+2025-02-10 02:35:37 - INFO - average q divergence is : 140.0798
+2025-02-10 02:35:37 - INFO - VAL loss :150.0656
+2025-02-10 02:35:37 - INFO - epoch:47/50 iteration:0/4 batch loss is :185.1114
+2025-02-10 02:35:37 - INFO - Epoch:47/50 Loss is :140.7509
+2025-02-10 02:35:37 - INFO - average cls loss is :0.6598
+2025-02-10 02:35:37 - INFO - average q divergence is : 140.0912
+2025-02-10 02:35:37 - INFO - epoch:48/50 iteration:0/4 batch loss is :169.2887
+2025-02-10 02:35:37 - INFO - Epoch:48/50 Loss is :140.7424
+2025-02-10 02:35:37 - INFO - average cls loss is :0.6619
+2025-02-10 02:35:37 - INFO - average q divergence is : 140.0805
+2025-02-10 02:35:38 - INFO - VAL loss :150.0749
+2025-02-10 02:35:38 - INFO - epoch:49/50 iteration:0/4 batch loss is :189.8275
+2025-02-10 02:35:38 - INFO - Epoch:49/50 Loss is :140.7394
+2025-02-10 02:35:38 - INFO - average cls loss is :0.6601
+2025-02-10 02:35:38 - INFO - average q divergence is : 140.0793
+2025-02-10 02:35:38 - INFO - training complete!!!

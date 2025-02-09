@@ -13,7 +13,7 @@ class BidPredictor(nn.Module):
         self.backbone_layers=[self.num_features,64,64,128,256,512]
         self.backbone=nn.Sequential(*[self.block(self.backbone_layers[i],self.backbone_layers[i+1]) for i in range(len(self.backbone_layers)-1)])
         self.classifier=nn.Linear(self.backbone_layers[-1],2)
-        self.sigmoid=nn.Sigmoid()
+        # self.sigmoid=nn.Sigmoid()
 
     @staticmethod
     def block(in_feature,out_feature):
@@ -30,7 +30,7 @@ class BidPredictor(nn.Module):
         x=torch.concat([x,region_features,city_features,alignment],dim=-1)
         assert x.shape[-1]==self.num_features,f'the number of features should be {self.num_features}'
         out=self.backbone(x)
-        return self.sigmoid(self.classifier(out))
+        return self.classifier(out)
  
 if __name__=='__main__':
     from torchsummary import summary
