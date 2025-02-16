@@ -1,0 +1,7 @@
+intialising dataset.....
+initalisation complete!
+(1232815, 1588) (1232815,) (1171174,)
+Model saved to xgb_bid_model.joblib
+Bidding Accuracy: 0.7264
+Model saved to xgb_price_model.joblib
+Paying Price RMSE: 3789.9838

@@ -1,0 +1,1 @@
+from bidder import BidRequest
