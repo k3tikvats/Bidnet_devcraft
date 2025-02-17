@@ -14,3 +14,12 @@ class QuantileLoss(nn.Module):
             Loss=(torch.mean((self.alpha-N)*(y-y_hat)*(y>y_hat))+torch.mean((self.alpha+N-1)*(y-y_hat)*(y<=y_hat)))/2
 
         return Loss
+    
+class LogScaledLoss(nn.Module):
+    def __init__(self,epsilon=1e-6):
+        self.epsilon=epsilon
+        super().__init__()
+    def forward(self,y,y_hat):
+        return torch.mean(-torch.log(torch.abs(y-y_hat))+self.epsilon)
+
+        

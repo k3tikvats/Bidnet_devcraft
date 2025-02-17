@@ -91,8 +91,10 @@ class AutoEncoder(nn.Module):
     
     def forward(self,x):
         x=x.reshape([-1,44])
-        return self.decoder(self.bottleneck(self.encoder(x)))
-
+        x=self.encoder(x)
+        x=self.bottleneck(x)
+        x=self.decoder(x)
+        return x
 if __name__=='__main__':
     from torchsummary import summary
     # model=BidPredictor(768).to('cuda')

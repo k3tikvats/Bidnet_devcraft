@@ -60,7 +60,7 @@ def get_interest_scores(profile_interests, advertiser_id):
     interest_vector = np.zeros(44)  
     advertiser_data = advertiser_embeddings.get(str(advertiser_id), {})
     advertiser_embedding = np.array(advertiser_data.get("embed", [0] * 512))
-    n_value = float(advertiser_data.get("N", 0)+1)
+    n_value = float(advertiser_data.get("N", 0))+1
     for i, interest_id in enumerate(INTERESTS):
         if interest_id in profile_interests:
             profile_embedding = np.array(profile_embeddings.get(interest_id, {}).get("embed", [0] * 512))
