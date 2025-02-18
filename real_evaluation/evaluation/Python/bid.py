@@ -6,7 +6,8 @@ from dataloader import Data_processor
 from bidRequest import BidRequest
 from time import time
 import json 
-
+import sys
+sys.path.append('/Users/anuragpandey/Downloads/evaluation/Python')
 class Bid(object):
 
     def __init__(self):
@@ -23,7 +24,7 @@ class Bid(object):
             y_price=self.model_price.predict([X])
         else:
             y_price=-1
-        print(time()-t)
+        # print(time()-t)
         return y_price
 
 if __name__=='__main__':

@@ -65,7 +65,7 @@ class BidPredictor(nn.Module):
         x=torch.concat([x,city_features,alignment],dim=-1)
         assert x.shape[-1]==self.num_features,f'the number of features should be {self.num_features}'
         out=self.backbone(x)
-        return self.classifier(out)
+        return out
 
 class AutoEncoder(nn.Module):
     def __init__(self,dim=None,layers=None):
