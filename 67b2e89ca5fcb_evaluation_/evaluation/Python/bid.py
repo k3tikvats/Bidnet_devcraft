@@ -5,28 +5,31 @@ import joblib
 from dataloader import Data_processor
 from bidRequest import BidRequest
 from time import time
+from dataloader import XGBoost
 import json 
 
 class Bid(object):
 
     def __init__(self):
 
-        self.model_bid = joblib.load("xgb_bid_model.joblib")
-        self.model_price = joblib.load("xgb_price_model.joblib")
+        self.model_bid = XGBoost("xgb_bid_model.joblib")
+        self.model_price = XGBoost("xgb_price_model.joblib")
 
 
     def get_bid_price(self, bidRequest):
         X=Data_processor(bidRequest=bidRequest)
-        t=time()
+        # t=time()
         y_bid_pred = self.model_bid.predict([X])
         if y_bid_pred:
-            y_price=self.model_price([X])
+            y_price=self.model_price.predict([X])
         else:
-            y_price=-1
-        print(time()-t)
+            y_price=y_bid_pred
+        # print(time()-t)
         return y_price
 
 if __name__=='__main__':
+
+    # for sample testing
     b=BidRequest()
     b.timestamp='20150314101523123'
     b.ip_address='192.143.16.*'

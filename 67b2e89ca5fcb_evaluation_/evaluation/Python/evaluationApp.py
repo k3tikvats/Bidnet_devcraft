@@ -1,13 +1,9 @@
 #!/usr/bin/python
 # -*- coding:utf8 -*-
 import csv
-
 import bidRequest
-
 from bid import Bid
-
 import argparse
-
 
 class TestData:
     def __init__(self):

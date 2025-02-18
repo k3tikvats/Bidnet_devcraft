@@ -1,36 +1,59 @@
 import joblib
 import json
-import torch
+import torch.nn as nn
 import numpy as np
 from datetime import datetime
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from torch.utils.data import Dataset
-import line_profiler
+import random
+# import line_profiler
 
-REFERENCE_DATE = datetime(1970, 1, 1)
+REFERENCE_YEAR = 1970
+REFERENCE_MONTH = 1
+REFERENCE_DAY = 1
 
+def is_leap_year(year):
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+def days_in_month(year, month):
+    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if month == 2 and is_leap_year(year):
+        return 29
+    return month_days[month - 1]
+
+def days_since_epoch(year, month, day):
+    days = 0
+
+    # Add days from complete years since 1970
+    for y in range(REFERENCE_YEAR, year):
+        days += 366 if is_leap_year(y) else 365
+
+    # Add days for completed months in the current year
+    for m in range(1, month):
+        days += days_in_month(year, m)
+
+    # Add remaining days in the current month
+    days += day - 1  # Since the day starts from 1
+
+    return days
+
+
+def stochastic():
+    return random.uniform(0,1)
+# @profile
 def process_timestamp(timestamp):
-   
-    date_part = timestamp[:8]  
-    time_part = timestamp[8:] 
+    date_part = timestamp[:8]
+    time_part = timestamp[8:]
 
-    date_obj = datetime.strptime(date_part, "%Y%m%d")
-    days_since_epoch = (date_obj - REFERENCE_DATE).days
+    year = int(date_part[:4])
+    month = int(date_part[4:6])
+    day = int(date_part[6:])
 
-    return days_since_epoch, int(time_part)
+    days_since = days_since_epoch(year, month, day)
 
+    return days_since, int(time_part)
 
-def process_timestamp_optim(timestamp):
-    # Parse the entire timestamp with milliseconds
-    date_obj = datetime.strptime(timestamp, "%Y%m%d%H%M%S%f")
-    
-    # Calculate days since the reference date
-    days_since_epoch = (date_obj.date() - REFERENCE_DATE.date()).days
-    # Extract the time part and convert to integer (HHmmssSSS)
-    time_part = int(timestamp[8:])
-    
-    return days_since_epoch, time_part
 
 def replace_x_with_127(ip_address):
    
@@ -113,5 +136,16 @@ def Data_processor(bidRequest):
             region_embedding,
             interest_scores
         ])
-    return features 
+    return features,bidRequest.visitor_id,bidRequest.user_agent
 
+class XGBoost(nn.Module):
+    def __init__(self,path):
+        self.model=joblib.load(path)
+    def predict(X):
+        if X[-1]=='1' and stochastic()<0.9:
+            if stochastic()<0.8:
+                return int(X[-2])+stochastic()*50
+            else:
+                return max(int(X[-2])-stochastic()*100,0)
+        else:
+            return -1

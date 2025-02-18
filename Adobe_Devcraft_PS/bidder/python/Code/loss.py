@@ -16,10 +16,11 @@ class QuantileLoss(nn.Module):
         return Loss
     
 class LogScaledLoss(nn.Module):
-    def __init__(self,epsilon=1e-6):
-        self.epsilon=epsilon
+    def __init__(self):
         super().__init__()
     def forward(self,y,y_hat):
-        return torch.mean(-torch.log(torch.abs(y-y_hat))+self.epsilon)
+        loss=-torch.log(1-torch.abs(y-y_hat))
+        loss[torch.isnan(loss)] = 10**6
+        return torch.mean(loss)
 
         

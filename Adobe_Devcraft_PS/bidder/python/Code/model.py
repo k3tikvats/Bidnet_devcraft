@@ -25,13 +25,15 @@ class BidPredictor(nn.Module):
     def __init__(self,loc_tokenizer_latent_dim,compression=5,time_features=2):
         super().__init__()
         self.loc_compression=[loc_tokenizer_latent_dim//(4)**i for i in range(compression)]
-        self.num_features=10+time_features+2*self.loc_compression[-1]    
+        # self.num_features=10+time_features+2*self.loc_compression[-1]
+        self.num_features=16+3+9
         # self.Region_compressor=nn.Sequential(*[self.block(self.loc_compression[i],self.loc_compression[i+1]) for i in range(compression-1)])
-        self.Region_compressor=nn.Sequential(*self.make_compressor(self.loc_compression))
+        # self.Region_compressor=nn.Sequential(*self.make_compressor(self.loc_compression))
         # self.City_compressor=nn.Sequential(*[self.block(self.loc_compression[i],self.loc_compression[i+1]) for i in range(compression-1)])
-        self.City_compressor=nn.Sequential(*self.make_compressor(self.loc_compression))
-        alignment_layers=[44,8,4]
-        self.alignment=nn.Sequential(*self.make_compressor(alignment_layers))
+        # self.City_compressor=nn.Sequential(*self.make_compressor(self.loc_compression))
+        self.City_compressor=AutoEncoder(dim=loc_tokenizer_latent_dim)
+        alignment_layers=[44,32,16]
+        self.alignment=AutoEncoder(layers=alignment_layers)
         # self.alignment=nn.Sequential(*[self.block(alignment_layers[i],alignment_layers[i+1]) for i in range(len(alignment_layers)-1)])
         # self.backbone_layers=[self.num_features,64,64,128,256,512]
         self.backbone_layers=[self.num_features,64,128]
@@ -54,25 +56,28 @@ class BidPredictor(nn.Module):
     def block(in_feature,out_feature):
         return nn.Sequential(nn.Linear(in_feature,out_feature),nn.BatchNorm1d(out_feature),nn.SiLU())
     
-    def forward(self,x,Region,City,alignment):
-        Region=Region.reshape([-1,768])
+    def forward(self,x,City,alignment):
         City=City.reshape([-1,768])
         alignment=alignment.reshape([-1,44])
-        x=x.reshape([-1,8])
-        region_features=self.Region_compressor(Region)
-        city_features=self.City_compressor(City)
-        alignment=self.alignment(alignment)
-        x=torch.concat([x,region_features,city_features,alignment],dim=-1)
+        x=x.reshape([-1,9])
+        city_features=self.City_compressor.latent(City)
+        alignment=self.alignment.latent(alignment)
+        x=torch.concat([x,city_features,alignment],dim=-1)
         assert x.shape[-1]==self.num_features,f'the number of features should be {self.num_features}'
         out=self.backbone(x)
         return self.classifier(out)
 
 class AutoEncoder(nn.Module):
-    def __init__(self):
+    def __init__(self,dim=None,layers=None):
         super().__init__()
-        layers=[44,8,4]
+        # layers=[44,32,16]
+        assert not dim or not layers,'incomplete data'
+
+        if not layers:           
+            layers=[dim//(4)**i for i in range(5)]
+
         self.encoder=nn.Sequential(*self.make_compressor(layers))
-        self.bottleneck=nn.Sequential(*[nn.Linear(4,4),nn.SiLU()])
+        self.bottleneck=nn.Sequential(*[nn.Linear(layers[-1],layers[-1]),nn.SiLU()])
         self.decoder=nn.Sequential(*self.make_compressor([layers[-(i+1)] for i in range(len(layers))]))
 
     def make_compressor(self,channels):
@@ -90,16 +95,20 @@ class AutoEncoder(nn.Module):
         return nn.Sequential(nn.Linear(in_feature,out_feature),nn.BatchNorm1d(out_feature),nn.SiLU())
     
     def forward(self,x):
-        x=x.reshape([-1,44])
+        x=x.reshape([-1,768])
         x=self.encoder(x)
         x=self.bottleneck(x)
         x=self.decoder(x)
         return x
+    def latent(self,x):
+        x=self.encoder(x)
+        x=self.bottleneck(x)
+        return x
 if __name__=='__main__':
     from torchsummary import summary
-    # model=BidPredictor(768).to('cuda')
-    # model(torch.ones((2,8),device='cuda'),torch.ones((2,768),device='cuda'),torch.ones((2,768),device='cuda'),torch.ones((2,44),device='cuda'))
-    # summary(model,[(1,8),(1,768),(1,768),(1,44)],batch_size=1)        
-    model=AutoEncoder().to('cuda')
-    model(torch.ones((2,44),device='cuda'))
-    summary(model,(1,44),batch_size=2)
+    model=BidPredictor(768).to('cuda')
+    model(torch.ones((2,9),device='cuda'),torch.ones((2,768),device='cuda'),torch.ones((2,44),device='cuda'))
+    summary(model,[(1,9),(1,768),(1,44)],batch_size=1)        
+    # model=AutoEncoder().to('cuda')
+    # model(torch.ones((2,768),device='cuda'))
+    # summary(model,(1,768),batch_size=2)
